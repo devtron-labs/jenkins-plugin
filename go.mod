@@ -2,10 +2,12 @@ module github.com/jenkins-plugin
 
 go 1.20
 
-require github.com/devtron-labs/common-lib v0.0.1
+require (
+	github.com/caarlos0/env v3.5.0+incompatible
+	github.com/devtron-labs/common-lib v0.0.1
+)
 
 require (
-	github.com/caarlos0/env v3.5.0+incompatible // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/minio/highwayhash v1.0.2 // indirect
 	github.com/nats-io/jwt/v2 v2.5.2 // indirect
