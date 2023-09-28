@@ -43,7 +43,7 @@ type JenkinsPluginInputVariables struct {
 	Password                string `env:"PASSWORD"`
 	JobName                 string `env:"JOB_NAME"`
 	JobTriggerParams        string `env:"JOB_TRIGGER_PARAMS"`
-	JenkinsPluginTimeout    int    `env:"JENKINS_PLUGIN_TIMEOUT" envDefault:"1"`
+	JenkinsPluginTimeout    int    `env:"JENKINS_PLUGIN_TIMEOUT" envDefault:"30"`
 	BuildStatusPollDuration int    `env:"BUILD_STATUS_POLL_DURATION" envDefault:"1"`
 	GitMaterialRequest      string `env:"GIT_MATERIAL_REQUEST"`
 }
