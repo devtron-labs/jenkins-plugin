@@ -8,6 +8,7 @@ import (
 	"github.com/bndr/gojenkins"
 	"github.com/caarlos0/env"
 	_ "github.com/devtron-labs/common-lib/pubsub-lib"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -81,6 +82,11 @@ func main() {
 	queueId, err := jenkins.BuildJob(ctx, jenkinsRequest.JobName, inputParams)
 	if err != nil {
 		fmt.Printf("error in trigger build - err : %s \n", err)
+	}
+
+	if queueId == 0 && err == nil {
+		fmt.Sprintf("exiting as job is already running")
+		os.Exit(0)
 	}
 
 	build, err := jenkins.GetBuildFromQueueID(ctx, queueId)
