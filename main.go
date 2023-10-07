@@ -88,8 +88,14 @@ func main() {
 		fmt.Sprintf("exiting as job is already running")
 		os.Exit(0)
 	}
+	if err != nil {
+		panic(err)
+	}
 
 	build, err := jenkins.GetBuildFromQueueID(ctx, queueId)
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println(`Job build no - `, build.Raw.ID)
 
 	jenkinsPluginTimeout := time.Minute * time.Duration(jenkinsRequest.JenkinsPluginTimeout)
