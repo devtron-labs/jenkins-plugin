@@ -122,7 +122,9 @@ func getTriggerApiInputParams() map[string]string {
 	// if user has given "GIT_MATERIAL_REPO", "GIT_MATERIAL_CHECKOUT_PATH", "GIT_MATERIAL_BRANCH" or "GIT_MATERIAL_COMMIT_HASH" in input parameters
 	// then it's value is parsed with original value
 	gitMaterialRequest := jenkinsRequest.GitMaterialRequest
-	gitMaterialDetails := strings.Split(gitMaterialRequest, "/") // GIT_MATERIAL_REQUEST will be of form "<repoName>/<checkoutPath>/<BranchName>/<CommitHash>"
+	//handling only for one git repo
+	gitMaterialDetailsForFirstRepo := strings.Split(gitMaterialRequest, "|") // GIT_MATERIAL_REQUEST will be of form "<repoName1>,<checkoutPath1>,<BranchName1>,<CommitHash1>|<repoName2>,<checkoutPath2>,<BranchName2>,<CommitHash2>"
+	gitMaterialDetails := strings.Split(gitMaterialDetailsForFirstRepo[0], ",")
 	gitMaterialDetailsMap := make(map[string]string)
 	if len(gitMaterialDetails) == 4 {
 		gitMaterialDetailsMap[GIT_MATERIAL_REPO] = gitMaterialDetails[0]
