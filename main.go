@@ -106,10 +106,16 @@ func main() {
 
 	go func() {
 		err = pollBuildStatus(ctx, wg, build)
+		if err != nil {
+			panic(err)
+		}
 	}()
 
 	go func() {
 		err = printBuildLogs(ctx, wg, build)
+		if err != nil {
+			panic(err)
+		}
 	}()
 
 	wg.Wait()
